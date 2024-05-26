@@ -5,6 +5,8 @@
 1. **IntelliJ에서 Git 설정**
     - 먼저, IntelliJ에서 프로젝트를 엽니다.
     - **`File`** > **`Settings`** > **`Version Control`** > **`Git`**로 이동하여 Git이 올바르게 설치되었는지 확인하세요.
+    - ![image](https://github.com/PetShield2024/BackEnd/assets/117579065/a4ee0d87-f7a9-4082-9ade-2fe86331b97e) 깃 버전이 뜨면 정상 안 뜨면 git bash 설
+
 2. **GitHub 리포지토리 추가**
     - IntelliJ의 **`VCS`** 메뉴에서 **`Import into Version Control`** > **`Create Git Repository`**를 선택하여 로컬 Git 리포지토리를 생성합니다.
     - 터미널에서 프로젝트 디렉토리로 이동하여 다음 명령어를 실행합니다:
