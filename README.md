@@ -1,6 +1,6 @@
-💻 PetShield Backend By SpringBoot
+### 💻 PetShield Backend By SpringBoot
 
-***처음 프로젝트 시작하기***
+## 📌 처음 프로젝트 시작하기
 
 1. **IntelliJ에서 Git 설정**
     - 먼저, IntelliJ에서 프로젝트를 엽니다.
@@ -21,15 +21,21 @@
         ```bash
         git remote add origin https://github.com/PetShield2024/BackEnd.git
         ```
-        
-4. **새 브랜치 생성 및 이동**
+
+4. 오류 발생시
+    
+    ```bash
+    git pull origin main
+    ```
+    
+5. **새 브랜치 생성 및 이동**
     - 새로운 브랜치를 생성하고 해당 브랜치로 이동합니다:
         
         ```bash
         git checkout -b seungeun/first
         ```
         
-5. **변경 사항 커밋**
+6. **변경 사항 커밋**
     - 모든 변경 사항을 스테이징하고 커밋합니다:
         
         ```bash
@@ -37,24 +43,24 @@
         git commit -m "[Feat]: 새로운 기능 추가"
         ```
         
-6. **브랜치 푸시**
+7. **브랜치 푸시**
     - 로컬 브랜치를 원격 리포지토리의 새로운 브랜치로 푸시합니다:
         
         ```bash
         git push -u origin seungeun/first
         ```
         
-7. 오류 발생시
+8. 오류 발생시
     
     ```bash
-    git pull origin seungeun/first --allow-unrelated-histories
+    git pull main --allow-unrelated-histories
     ```
 
-***두번째 이후 프로젝트 실행 시***
+## 📌 두번째 이후 프로젝트 실행 시
 1. 메인에 있는 내용 받기
     
     ```bash
-    git pull origin dev
+    git pull origin main
     ```
 2. **새 브랜치 생성 및 이동**
     - 새로운 브랜치를 생성하고 해당 브랜치로 이동합니다:
