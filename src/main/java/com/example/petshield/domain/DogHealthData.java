@@ -2,12 +2,14 @@ package com.example.petshield.domain;
 
 import com.example.petshield.domain.common.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Table(name = "dog_health_data")
 public class DogHealthData extends BaseEntity {
     @Id
