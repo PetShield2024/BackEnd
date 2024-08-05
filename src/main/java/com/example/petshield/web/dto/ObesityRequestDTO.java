@@ -16,7 +16,6 @@ public class ObesityRequestDTO {
 
     @Getter
     public static class ImageDto{
-
-        String ObesityImage;
+        String obesityImage;
     }
 }

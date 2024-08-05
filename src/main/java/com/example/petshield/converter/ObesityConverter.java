@@ -18,6 +18,7 @@ public class ObesityConverter {
                 .dog(dog)
                 .build();
     }
+
     public static ObesityResponseDTO.ImageResultDTO toImageResultDTO(ObesityData obesityData) {
 
         return ObesityResponseDTO.ImageResultDTO.builder()
