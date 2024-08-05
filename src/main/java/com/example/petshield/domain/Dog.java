@@ -22,14 +22,14 @@ public class Dog extends BaseEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(nullable = false)
     private String dogName;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(10)")
+    @Column(columnDefinition = "VARCHAR(50)")
     private Breed breed;
 
     @Column(nullable = false)
@@ -38,14 +38,14 @@ public class Dog extends BaseEntity {
     private LocalDate birth;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(10)")
+    @Column(columnDefinition = "VARCHAR(50)")
     private Gender gender;
 
     @Column(nullable = false)
     private String imageUrl;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(10)")
+    @Column(columnDefinition = "VARCHAR(50)")
     private Size size;
 
     @Enumerated(EnumType.STRING)
