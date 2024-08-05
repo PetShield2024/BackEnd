@@ -3,13 +3,18 @@ package com.example.petshield.domain;
 import com.example.petshield.domain.common.BaseEntity;
 import com.example.petshield.domain.enums.*;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
 @Entity
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Table(name = "dogs")
 public class Dog extends BaseEntity {
     @Id
@@ -30,7 +35,7 @@ public class Dog extends BaseEntity {
     @Column(nullable = false)
     private float weight;
 
-    private LocalDateTime birth;
+    private LocalDate birth;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)")
