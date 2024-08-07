@@ -19,27 +19,22 @@ public class DogRequestDTO {
     public static class ProfileDto{
         @NotNull
         String dogName;
-
         String imageUrl;
-
         @Enumerated(EnumType.STRING)
         @Column(columnDefinition = "VARCHAR(15) DEFAULT '중성화'")
         Gender gender;
-
         @NotNull
         LocalDate birth;
-
         @Enumerated(EnumType.STRING)
         Breed breed;
-
         @NotNull
         Float weight;
-
         @Enumerated(EnumType.STRING)
         Size size;
-
         @Enumerated(EnumType.STRING)
         @Column(columnDefinition = "VARCHAR(15) DEFAULT '비임신'")
         Extra extra;
     }
+
+
 }

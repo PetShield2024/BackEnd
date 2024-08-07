@@ -30,4 +30,14 @@ public class DogConverter {
                 .build();
     }
 
+    public static DogResponseDTO.HomeProfileDTO toHomeResultDTO(Dog dog) {
+        return DogResponseDTO.HomeProfileDTO.builder()
+                .dogName(dog.getDogName())
+                .weight(dog.getWeight())
+                .birth(dog.getBirth())
+                .breed(dog.getBreed())
+                .imageUrl(dog.getImageUrl())
+                .build();
+    }
+
 }
