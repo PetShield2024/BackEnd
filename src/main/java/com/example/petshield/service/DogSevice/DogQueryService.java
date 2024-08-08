@@ -4,7 +4,6 @@ import com.example.petshield.domain.Dog;
 import com.example.petshield.web.dto.DogRequestDTO;
 import jakarta.transaction.Transactional;
 
-public interface DogCommandService {
-    @Transactional
-    Dog profile(Long userId, DogRequestDTO.ProfileDto request);
+public interface DogQueryService {
+    Dog getMyDogInfo(Long dogId);
 }
