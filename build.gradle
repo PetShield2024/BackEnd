@@ -39,6 +39,17 @@ dependencies {
 //	implementation 'org.springdoc:springdoc-openapi-security:1.6.14'
 
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	//Webflux
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	//thymeleaf
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	// 카카오로그인
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 }
 tasks.named('test') {
 	useJUnitPlatform()

@@ -18,5 +18,25 @@ spring:
           auto: update
         default_batch_fetch_size: 1000
 
+  security:
+    user:
+      name: root
+      password: han3546
+    # 'mvc' 관련 설정은 보안 설정에 직접적으로 영향을 미치지 않으므로 보안 설정에 포함시키지 않습니다.
+
+  application:
+    name: PetShield
+
+swagger:
+  ui:
+    base-url: /swagger-ui/  # Swagger UI의 기본 경로 설정
+
+kakao:
+  client_id: 3a1648f18893406608171dcd57022aa9
+  client_secret: jOs7aOXiPRka7lm17aZLkw0l7VKkDmlo
+  redirect_uri: http://localhost:8080/callback
+  token_uri: https://kauth.kakao.com/oauth/token
+  user_info_uri: https://kapi.kakao.com/v2/user/me
+
 server:
-  port: 8080  # 기본 HTTP 포트로 설정
+  port: 8080  # 기본 HTTP 포트 설정
