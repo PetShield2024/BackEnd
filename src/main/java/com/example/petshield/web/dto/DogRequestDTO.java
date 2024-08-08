@@ -34,6 +34,8 @@ public class DogRequestDTO {
         @Enumerated(EnumType.STRING)
         @Column(columnDefinition = "VARCHAR(15) DEFAULT '비임신'")
         Extra extra;
+
+        Float activityLevel;
     }
 
 

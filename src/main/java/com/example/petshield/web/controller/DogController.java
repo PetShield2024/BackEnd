@@ -35,34 +35,40 @@ public class DogController {
 
 
     @Operation(summary = "강아지 정보 등록 API", description = "작성한 강아지의 정보를 저장하는 API입니다.")
-    @PostMapping("/profile")
+    @PostMapping("/{userId}/profile")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH003", description = "access 토큰을 주세요!", content = @Content),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH004", description = "access 토큰 만료", content = @Content),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰 모양이 이상함", content = @Content),
     })
-    
+    @Parameters({
+            @Parameter(name = "userId", description = "사용자의 아이디, path variable 입니다!")
+    })
     public ApiResponse<DogResponseDTO.ProfileResultDTO> profile(
+            @PathVariable(name = "userId") Long userId,
             @RequestBody @Valid DogRequestDTO.ProfileDto request) {
         // 서비스 호출하여 일기 저장
-        Dog dog = dogCommandService.profile(request);
+        Dog dog = dogCommandService.profile(userId, request);
         return ApiResponse.onSuccess(DogConverter.toProfileResultDTO(dog));
     }
 
 
     @Operation(summary = "강아지 프로필 불러오기 API", description = "강아지의 프로필을 불러오는 API입니다.")
-    @GetMapping("/home")
+    @GetMapping("{dogId}/home")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH003", description = "access 토큰을 주세요!", content = @Content),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH004", description = "access 토큰 만료", content = @Content),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰 모양이 이상함", content = @Content),
     })
-
-    public ApiResponse<DogResponseDTO.HomeProfileDTO> home() {
+    @Parameters({
+            @Parameter(name = "dogId", description = "강아지의 아이디, path variable 입니다!")
+    })
+    public ApiResponse<DogResponseDTO.HomeProfileDTO> home(
+            @PathVariable(name = "dogId") Long dogId) {
         // 서비스 호출하여 일기 저장
-        Dog dog = dogQueryService.getMyDogInfo();
+        Dog dog = dogQueryService.getMyDogInfo(dogId);
         return ApiResponse.onSuccess(DogConverter.toHomeResultDTO(dog));
     }
 }

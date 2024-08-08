@@ -24,13 +24,13 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private String passwordHash;
-
-    @Column(nullable = false)
-    private int status;
-
-    @Column(nullable = false)
-    private LocalDateTime inactiveDate;
+//    @Column(nullable = false)
+//    private String passwordHash;
+//
+//    @Column(nullable = false)
+//    private int status;
+//
+//    @Column(nullable = false)
+//    private LocalDateTime inactiveDate;
 }
 

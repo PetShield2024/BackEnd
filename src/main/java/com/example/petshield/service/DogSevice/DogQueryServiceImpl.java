@@ -12,13 +12,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class DogQueryServiceImpl implements DogQueryService{
     private final DogRepository dogRepository;
-    private final UserRepository userRepository;
 
     @Override
     @Transactional
-    public Dog getMyDogInfo() {
-        var userId = 1;
-        User user = userRepository.findById((long) userId).orElseThrow(() -> new RuntimeException("User not found"));
-        return dogRepository.findByUser(user);
+    public Dog getMyDogInfo(Long dogId) {
+        Dog dog = dogRepository.findById(dogId).orElseThrow(() -> new RuntimeException("Dog not found"));
+        return dog;
     }
 }

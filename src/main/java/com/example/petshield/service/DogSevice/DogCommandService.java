@@ -6,5 +6,5 @@ import jakarta.transaction.Transactional;
 
 public interface DogCommandService {
     @Transactional
-    Dog profile(DogRequestDTO.ProfileDto request);
+    Dog profile(Long userId, DogRequestDTO.ProfileDto request);
 }

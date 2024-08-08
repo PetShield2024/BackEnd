@@ -20,14 +20,9 @@ public class DogHealthData extends BaseEntity {
     @JoinColumn(name = "dog_id", nullable = false)
     private Dog dog;
 
-    private Float temperature;
 
     private Integer heartRate;
 
     private Integer stepCount;
 
-    private Float distanceTraveled;
-
-    @Column(nullable = false)
-    private String activityLevel;
 }

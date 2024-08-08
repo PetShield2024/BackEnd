@@ -5,5 +5,5 @@ import com.example.petshield.web.dto.DogRequestDTO;
 import jakarta.transaction.Transactional;
 
 public interface DogQueryService {
-    Dog getMyDogInfo();
+    Dog getMyDogInfo(Long dogId);
 }

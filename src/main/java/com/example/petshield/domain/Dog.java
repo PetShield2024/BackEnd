@@ -51,4 +51,7 @@ public class Dog extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)")
     private Extra extra;
+
+    @Column(nullable = false)
+    private Float activityLevel;
 }
