@@ -71,4 +71,22 @@ public class DogController {
         Dog dog = dogQueryService.getMyDogInfo(dogId);
         return ApiResponse.onSuccess(DogConverter.toHomeResultDTO(dog));
     }
+
+    @Operation(summary = "강아지 정보 조회 API", description = "강아지의 정보를 불러오는 API입니다.")
+    @GetMapping("{dogId}/info")
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH003", description = "access 토큰을 주세요!", content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH004", description = "access 토큰 만료", content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰 모양이 이상함", content = @Content),
+    })
+    @Parameters({
+            @Parameter(name = "dogId", description = "강아지의 아이디, path variable 입니다!")
+    })
+    public ApiResponse<DogResponseDTO.InfoDTO> info(
+            @PathVariable(name = "dogId") Long dogId) {
+        // 서비스 호출하여 일기 저장
+        Dog dog = dogQueryService.showDogInfo(dogId);
+        return ApiResponse.onSuccess(DogConverter.toInfoResultDTO(dog));
+    }
 }

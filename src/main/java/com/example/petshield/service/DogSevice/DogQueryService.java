@@ -6,4 +6,6 @@ import jakarta.transaction.Transactional;
 
 public interface DogQueryService {
     Dog getMyDogInfo(Long dogId);
+
+    Dog showDogInfo(Long dogId);
 }

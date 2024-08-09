@@ -55,4 +55,16 @@ public class DogConverter {
                 .build();
     }
 
+    public static DogResponseDTO.InfoDTO toInfoResultDTO(Dog dog) {
+        return DogResponseDTO.InfoDTO.builder()
+                .dogName(dog.getDogName())
+                .imageUrl(dog.getImageUrl())
+                .gender(dog.getGender())
+                .breed(dog.getBreed())
+                .birth(dog.getBirth())
+                .extra(dog.getExtra())
+                .size(dog.getSize())
+                .weight(dog.getWeight())
+                .build();
+    }
 }

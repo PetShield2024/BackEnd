@@ -21,4 +21,12 @@ public class DogQueryServiceImpl implements DogQueryService{
         Dog dog = dogRepository.findById(dogId).orElseThrow(() -> new DogIdHandler(ErrorStatus.DOG_ID_NOT_FOUND));
         return dog;
     }
+
+    @Override
+    @Transactional
+    public Dog showDogInfo(Long dogId) {
+        Dog dog = dogRepository.findById(dogId).orElseThrow(() -> new DogIdHandler(ErrorStatus.DOG_ID_NOT_FOUND));
+
+        return dog;
+    }
 }
