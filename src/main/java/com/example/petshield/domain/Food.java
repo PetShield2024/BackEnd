@@ -20,14 +20,11 @@ public class Food extends BaseEntity {
     @Column(nullable = false)
     private String foodName;
 
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(10)")
-    private Brand brand;
+    private String brand;
 
     @Column(nullable = false)
     private int price;
 
-    @Lob
     private String image;
 
     @Enumerated(EnumType.STRING)
@@ -36,14 +33,10 @@ public class Food extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)")
-    private Breed breed;
-
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(10)")
     private Size size;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(10)")
+    @Column(columnDefinition = "VARCHAR(20)")
     private Age age;
 
     @Enumerated(EnumType.STRING)

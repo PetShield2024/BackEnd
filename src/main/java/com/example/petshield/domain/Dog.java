@@ -28,14 +28,14 @@ public class Dog extends BaseEntity {
     @Column(nullable = false)
     private String dogName;
 
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(50)")
-    private Breed breed;
+    private String breed;
 
     @Column(nullable = false)
     private float weight;
 
     private LocalDate birth;
+
+    private Integer age;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(50)")

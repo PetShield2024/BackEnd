@@ -37,8 +37,8 @@ public class DogResponseDTO {
         String imageUrl;
         @NotNull
         LocalDate birth;
-        @Enumerated(EnumType.STRING)
-        Breed breed;
+        @NotNull
+        String breed;
         @NotNull
         Float weight;
     }

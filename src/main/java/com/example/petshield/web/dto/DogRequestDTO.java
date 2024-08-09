@@ -25,12 +25,16 @@ public class DogRequestDTO {
         Gender gender;
         @NotNull
         LocalDate birth;
-        @Enumerated(EnumType.STRING)
-        Breed breed;
+
+        @NotNull
+        String breed;
+
         @NotNull
         Float weight;
+
         @Enumerated(EnumType.STRING)
         Size size;
+
         @Enumerated(EnumType.STRING)
         @Column(columnDefinition = "VARCHAR(15) DEFAULT '비임신'")
         Extra extra;
