@@ -17,4 +17,13 @@ public class ObesityResponseDTO {
         Long obesityId;
         LocalDateTime createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class GetImageDTO{
+        Long obesityId;
+        String obesityImage;
+    }
 }

@@ -26,4 +26,11 @@ public class ObesityConverter {
                 .createdAt(LocalDateTime.now())
                 .build();
     }
+
+    public static ObesityResponseDTO.GetImageDTO getImageResultDTO(ObesityData obesityData) {
+        return ObesityResponseDTO.GetImageDTO.builder()
+                .obesityId(obesityData.getId())
+                .obesityImage(obesityData.getObesityImage())
+                .build();
+    }
 }
