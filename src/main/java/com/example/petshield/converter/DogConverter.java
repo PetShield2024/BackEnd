@@ -2,6 +2,7 @@ package com.example.petshield.converter;
 
 import com.example.petshield.domain.Dog;
 import com.example.petshield.domain.User;
+import com.example.petshield.domain.enums.Age;
 import com.example.petshield.domain.enums.Gender;
 import com.example.petshield.web.dto.DogRequestDTO;
 import com.example.petshield.web.dto.DogResponseDTO;
@@ -17,7 +18,16 @@ public class DogConverter {
                 .createdAt(LocalDateTime.now())
                 .build();
     }
-    public static Dog toDog(User user, DogRequestDTO.ProfileDto request){
+    public static Dog toDog(User user, DogRequestDTO.ProfileDto request) {
+        int currentYear = java.time.Year.now().getValue();
+        int birthYear = request.getBirth().getYear();
+        int birthMonth = request.getBirth().getMonthValue();
+        int birthDay = request.getBirth().getDayOfMonth();
+
+        int age = currentYear - birthYear;
+        if (java.time.LocalDate.now().isBefore(java.time.LocalDate.of(currentYear, birthMonth, birthDay))) {
+            age--;  // Subtract one if the birthdate hasn't occurred yet this year
+        }
 
         return Dog.builder()
                 .user(user)
@@ -30,8 +40,10 @@ public class DogConverter {
                 .size(request.getSize())
                 .weight(request.getWeight())
                 .activityLevel(request.getActivityLevel())
+                .age(age)  // Assuming there's a field in Dog for age
                 .build();
     }
+
 
     public static DogResponseDTO.HomeProfileDTO toHomeResultDTO(Dog dog) {
         return DogResponseDTO.HomeProfileDTO.builder()

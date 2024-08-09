@@ -21,4 +21,6 @@ public class MyFood extends BaseEntity {
     private Integer price;
 
     private String site;
+
+    private String reason;
 }
