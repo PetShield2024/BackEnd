@@ -8,4 +8,6 @@ public interface DogQueryService {
     Dog getMyDogInfo(Long dogId);
 
     Dog showDogInfo(Long dogId);
+
+    Dog modifyDogInfo(Long dogId, DogRequestDTO.ProfileDto request);
 }

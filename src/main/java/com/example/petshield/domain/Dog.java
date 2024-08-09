@@ -53,5 +53,5 @@ public class Dog extends BaseEntity {
     private Extra extra;
 
     @Column(nullable = false)
-    private Float activityLevel;
+    private Double activityLevel;
 }

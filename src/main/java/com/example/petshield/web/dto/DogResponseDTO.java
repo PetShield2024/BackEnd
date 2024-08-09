@@ -67,4 +67,13 @@ public class DogResponseDTO {
         @Column(columnDefinition = "VARCHAR(15) DEFAULT '비임신'")
         Extra extra;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ModifyResultDTO{
+        Long dogId;
+        LocalDateTime updatedAt;
+    }
 }
