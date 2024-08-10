@@ -10,6 +10,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 
@@ -19,7 +20,6 @@ public class DogRequestDTO {
     public static class ProfileDto{
         @NotNull
         String dogName;
-        String imageUrl;
         @Enumerated(EnumType.STRING)
         @Column(columnDefinition = "VARCHAR(15) DEFAULT '중성화'")
         Gender gender;

@@ -34,7 +34,6 @@ public class DogResponseDTO {
     public static class HomeProfileDTO{
         @NotNull
         String dogName;
-        String imageUrl;
         @NotNull
         LocalDate birth;
         @NotNull
@@ -51,7 +50,6 @@ public class DogResponseDTO {
     public static class InfoDTO{
         @NotNull
         String dogName;
-        String imageUrl;
         @Enumerated(EnumType.STRING)
         @Column(columnDefinition = "VARCHAR(15) DEFAULT '중성화'")
         Gender gender;
@@ -74,6 +72,24 @@ public class DogResponseDTO {
     @AllArgsConstructor
     public static class ModifyResultDTO{
         Long dogId;
+        LocalDateTime updatedAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class DogImageResultDTO{
+        Long dogImageId;
+        LocalDateTime createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class DogImageModifyDTO{
+        Long dogImageId;
         LocalDateTime updatedAt;
     }
 }

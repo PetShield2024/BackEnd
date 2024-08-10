@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 
 public class ObesityConverter {
 
-    public static ObesityData toObesityData(ObesityRequestDTO.ImageDto request, Dog dog){
+    public static ObesityData toObesityData(String image, Dog dog){
 
         return ObesityData.builder()
-                .obesityImage(request.getObesityImage())
+                .obesityImage(image)
                 .dog(dog)
                 .build();
     }
