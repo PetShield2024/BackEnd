@@ -154,4 +154,22 @@ public class DogController {
         return ApiResponse.onSuccess(DogConverter.toImageModifyDTO(dogImage));
     }
 
+    @Operation(summary = "강아지 사진 조회 API", description = "강아지의 사진을 수정하는 API입니다.")
+    @GetMapping(value = "/{dogId}/image/get")
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH003", description = "access 토큰을 주세요!", content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH004", description = "access 토큰 만료", content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰 모양이 이상함", content = @Content),
+    })
+    @Parameters({
+            @Parameter(name = "dogId", description = "강아지의 아이디, path variable 입니다!")
+    })
+    public ApiResponse<DogResponseDTO.DogImageDTO> getImage(
+            @PathVariable(name = "dogId") Long dogId){
+        // 서비스 호출하여 사진 저장
+        DogImage dogImage = dogQueryService.getImage(dogId);
+        return ApiResponse.onSuccess(DogConverter.toImageDTO(dogImage));
+    }
+
 }

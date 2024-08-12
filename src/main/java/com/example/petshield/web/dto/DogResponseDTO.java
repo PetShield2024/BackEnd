@@ -92,4 +92,14 @@ public class DogResponseDTO {
         Long dogImageId;
         LocalDateTime updatedAt;
     }
+
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class DogImageDTO{
+        Long dogImageId;
+        String imageUrl;
+    }
 }

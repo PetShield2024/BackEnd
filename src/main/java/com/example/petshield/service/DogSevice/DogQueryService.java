@@ -13,4 +13,6 @@ public interface DogQueryService {
     Dog modifyDogInfo(Long dogId, DogRequestDTO.ProfileDto request);
 
     DogImage mofifyImage(Long dogId, MultipartFile image);
+
+    DogImage getImage(Long dogId);
 }

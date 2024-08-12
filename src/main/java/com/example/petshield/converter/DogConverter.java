@@ -165,4 +165,11 @@ public class DogConverter {
 
         return dogImage;
     }
+
+    public static DogResponseDTO.DogImageDTO toImageDTO(DogImage dogImage) {
+        return DogResponseDTO.DogImageDTO.builder()
+                .dogImageId(dogImage.getDogImageId())
+                .imageUrl(dogImage.getImageUrl())
+                .build();
+    }
 }

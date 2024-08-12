@@ -72,4 +72,13 @@ public class DogQueryServiceImpl implements DogQueryService {
         // Save the updated dog information
         return dogImageRepository.save(dogImage);
     }
+
+    @Override
+    public DogImage getImage(Long dogId) {
+        Dog dog = dogRepository.findById(dogId).orElseThrow(() -> new DogIdHandler(ErrorStatus.DOG_ID_NOT_FOUND));
+
+        DogImage dogImage = dogImageRepository.findByDog(dog).orElseThrow(() ->  new RuntimeException("DogImage not found"));
+
+        return dogImage;
+    }
 }
