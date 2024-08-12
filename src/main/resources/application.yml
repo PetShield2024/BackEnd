@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://petshield-dev.c344wgygm0ss.ap-northeast-2.rds.amazonaws.com:3306/petshield
-    username: root
-    password: han3546*
+    url: ${AWS_DB_URL}
+    username: ${AWS_DB_USER}
+    password: ${AWS_DB_PASS}
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
@@ -17,6 +17,24 @@ spring:
         hbm2ddl:
           auto: update
         default_batch_fetch_size: 1000
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
 
+cloud:
+  aws:
+    s3:
+      bucket: petshield-dev
+      path:
+        dog : dogs
+        obesity : obesity
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    credentials:
+      accessKey: ${AWS_ACCESS_KEY_ID}
+      secretKey: ${AWS_SECRET_ACCESS_KEY}
 server:
   port: 8080  # 기본 HTTP 포트로 설정

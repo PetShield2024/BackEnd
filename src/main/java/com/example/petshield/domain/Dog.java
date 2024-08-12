@@ -41,8 +41,8 @@ public class Dog extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(50)")
     private Gender gender;
 
-    @Column(nullable = false)
-    private String imageUrl;
+//    @Column(nullable = false)
+//    private String imageUrl;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(50)")

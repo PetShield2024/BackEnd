@@ -1,6 +1,7 @@
 package com.example.petshield.converter;
 
 import com.example.petshield.domain.Dog;
+import com.example.petshield.domain.DogImage;
 import com.example.petshield.domain.User;
 import com.example.petshield.domain.enums.Age;
 import com.example.petshield.domain.enums.Gender;
@@ -32,7 +33,6 @@ public class DogConverter {
         return Dog.builder()
                 .user(user)
                 .dogName(request.getDogName())
-                .imageUrl(request.getImageUrl())
                 .gender(request.getGender())
                 .breed(request.getBreed())
                 .birth(request.getBirth())
@@ -47,7 +47,6 @@ public class DogConverter {
 
     public static Dog updateDog(Dog dog, DogRequestDTO.ProfileDto request) {
         dog.setDogName(request.getDogName());
-        dog.setImageUrl(request.getImageUrl());
         dog.setGender(request.getGender());
         dog.setBirth(request.getBirth());
         dog.setBreed(request.getBreed());
@@ -116,14 +115,12 @@ public class DogConverter {
                 .weight(dog.getWeight())
                 .birth(dog.getBirth())
                 .breed(dog.getBreed())
-                .imageUrl(dog.getImageUrl())
                 .build();
     }
 
     public static DogResponseDTO.InfoDTO toInfoResultDTO(Dog dog) {
         return DogResponseDTO.InfoDTO.builder()
                 .dogName(dog.getDogName())
-                .imageUrl(dog.getImageUrl())
                 .gender(dog.getGender())
                 .breed(dog.getBreed())
                 .birth(dog.getBirth())
@@ -138,6 +135,41 @@ public class DogConverter {
         return DogResponseDTO.ModifyResultDTO.builder()
                 .dogId(dog.getId())
                 .updatedAt(LocalDateTime.now())
+                .build();
+    }
+
+
+    public static DogImage toDogImage(Dog dog, String pictureUrl) {
+        return DogImage.builder()
+                .dog(dog)
+                .imageUrl(pictureUrl)
+                .build();
+    }
+
+    public static DogResponseDTO.DogImageResultDTO toImageResultDTO(DogImage dogImage) {
+        return DogResponseDTO.DogImageResultDTO.builder()
+                .dogImageId(dogImage.getDogImageId())
+                .createdAt(LocalDateTime.now())
+                .build();
+    }
+
+    public static DogResponseDTO.DogImageModifyDTO toImageModifyDTO(DogImage dogImage) {
+        return DogResponseDTO.DogImageModifyDTO.builder()
+                .dogImageId(dogImage.getDogImageId())
+                .updatedAt(LocalDateTime.now())
+                .build();
+    }
+
+    public static DogImage updateDogImage(DogImage dogImage, String pictureUrl) {
+        dogImage.setImageUrl(pictureUrl);
+
+        return dogImage;
+    }
+
+    public static DogResponseDTO.DogImageDTO toImageDTO(DogImage dogImage) {
+        return DogResponseDTO.DogImageDTO.builder()
+                .dogImageId(dogImage.getDogImageId())
+                .imageUrl(dogImage.getImageUrl())
                 .build();
     }
 }

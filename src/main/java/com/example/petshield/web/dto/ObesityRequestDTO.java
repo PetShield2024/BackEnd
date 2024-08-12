@@ -14,8 +14,8 @@ import java.time.LocalDate;
 
 public class ObesityRequestDTO {
 
-    @Getter
-    public static class ImageDto{
-        String obesityImage;
-    }
+//    @Getter
+//    public static class ImageDto{
+//        String obesityImage;
+//    }
 }

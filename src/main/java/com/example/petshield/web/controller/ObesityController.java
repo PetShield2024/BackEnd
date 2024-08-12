@@ -20,7 +20,9 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/obesitys")
@@ -37,7 +39,7 @@ public class ObesityController {
     }
     
     @Operation(summary = "비만도 사진 등록 API", description = "비만도 검사를 위해 업로드한 사진을 저장하는 API입니다.")
-    @PostMapping("/{dogId}/image")
+    @PostMapping(value = "/{dogId}/image", consumes = "multipart/form-data")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH003", description = "access 토큰을 주세요!", content = @Content),
@@ -49,14 +51,14 @@ public class ObesityController {
     })
     public ApiResponse<ObesityResponseDTO.ImageResultDTO> saveImage(
             @PathVariable(name = "dogId") Long dogId,
-            @RequestBody @Valid ObesityRequestDTO.ImageDto request) {
+            @RequestPart (value = "image", required = false) MultipartFile image) {
         // 서비스 호출하여 일기 저장
-        ObesityData obesityData = obesityCommandService.saveImage(dogId, request);
+        ObesityData obesityData = obesityCommandService.saveImage(dogId, image);
         return ApiResponse.onSuccess(ObesityConverter.toImageResultDTO(obesityData));
     }
 
     @Operation(summary = "비만도 사진 불러오기 API", description = "비만도 검사를 위해 업로드한 사진을 불러오는 API입니다.")
-    @PostMapping("/{dogId}/get")
+    @GetMapping("/{dogId}/get")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH003", description = "access 토큰을 주세요!", content = @Content),
@@ -66,10 +68,10 @@ public class ObesityController {
     @Parameters({
             @Parameter(name = "dogId", description = "강아지의 아이디, path variable 입니다!")
     })
-    public ApiResponse<ObesityResponseDTO.GetImageDTO> saveImage(
+    public ApiResponse<ObesityResponseDTO.GetImageDTO> getImage(
             @PathVariable(name = "dogId") Long dogId) {
-        // 서비스 호출하여 일기 저장
         ObesityData obesityData = obesityQueryService.getImage(dogId);
         return ApiResponse.onSuccess(ObesityConverter.getImageResultDTO(obesityData));
     }
+
 }
