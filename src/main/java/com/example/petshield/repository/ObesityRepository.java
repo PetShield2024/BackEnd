@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface ObesityRepository extends JpaRepository<ObesityData, Long> {
     @Query("SELECT o FROM ObesityData o WHERE o.dog = :dog ORDER BY o.createdAt DESC")
     List<ObesityData> findAllByDogOrderByCreatedAtDesc(@Param("dog") Dog dog);
+
+    Optional<ObesityData> findByDog(Dog dog);
 }
