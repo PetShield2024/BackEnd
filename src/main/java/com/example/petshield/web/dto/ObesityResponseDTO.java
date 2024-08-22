@@ -1,5 +1,6 @@
 package com.example.petshield.web.dto;
 
+import com.example.petshield.domain.enums.Obesity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,5 +26,14 @@ public class ObesityResponseDTO {
     public static class GetImageDTO{
         Long obesityId;
         String obesityImage;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class TestResultDTO {
+        Long obesityId;
+        Obesity obesity;
     }
 }

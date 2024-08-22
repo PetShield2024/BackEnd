@@ -6,6 +6,7 @@ import com.example.petshield.converter.DogConverter;
 import com.example.petshield.converter.ObesityConverter;
 import com.example.petshield.domain.Dog;
 import com.example.petshield.domain.ObesityData;
+import com.example.petshield.domain.enums.Obesity;
 import com.example.petshield.service.DogSevice.DogCommandService;
 import com.example.petshield.service.ObesityService.ObesityCommandService;
 import com.example.petshield.service.ObesityService.ObesityQueryService;
@@ -21,6 +22,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -73,5 +75,22 @@ public class ObesityController {
         ObesityData obesityData = obesityQueryService.getImage(dogId);
         return ApiResponse.onSuccess(ObesityConverter.getImageResultDTO(obesityData));
     }
+
+    @Operation(summary = "비만도 검사 결과 API", description = "비만도 검사를 하는 API입니다.")
+    @PatchMapping(value = "{dogId}/test", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH003", description = "access 토큰을 주세요!", content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH004", description = "access 토큰 만료", content = @Content),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰 모양이 이상함", content = @Content),
+    })
+    @Parameters({
+            @Parameter(name = "dogId", description = "강아지의 아이디, path variable 입니다!")
+    })
+    public ResponseEntity<Obesity> test(@PathVariable(name = "dogId") Long dogId) {
+        Obesity obesityData = obesityCommandService.test(dogId);
+        return ResponseEntity.ok(obesityData);
+    }
+
 
 }
