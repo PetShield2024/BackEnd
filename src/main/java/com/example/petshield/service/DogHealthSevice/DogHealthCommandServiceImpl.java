@@ -26,7 +26,7 @@ public class DogHealthCommandServiceImpl implements DogHealthCommandService {
 
         List<DogHealthData> dogHealthData = dogHealthRepository.findAllByDogOrderByCreatedAtDesc(dog);
         if (dogHealthData.isEmpty()) {
-            throw new RuntimeException("Obesity data not found");
+            throw new RuntimeException("doghealth data not found");
         }
 
         return dogHealthData.get(0); // Return the first result in the list
