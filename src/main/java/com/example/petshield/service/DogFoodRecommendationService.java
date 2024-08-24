@@ -7,21 +7,20 @@ import com.example.petshield.domain.enums.Gender;
 import com.example.petshield.repository.DogHealthRepository;
 import com.example.petshield.repository.DogRepository;
 import com.example.petshield.repository.ObesityRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.OptionalDouble;
 
 @Service
 public class DogFoodRecommendationService {
@@ -38,16 +37,38 @@ public class DogFoodRecommendationService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final String pythonApiUrl = "http://192.168.219.108:5000/recommend";  // Python server URL
+    private final String pythonApiUrl = "http://192.168.219.107:5000/recommend";  // Python server URL
 
     public String getDogFoodRecommendation(Long dogId) {
         Dog dog = dogRepository.findById(dogId).orElseThrow(() -> new RuntimeException("Dog not found"));
         List<ObesityData> obesityDataList = obesityRepository.findAllByDogOrderByCreatedAtDesc(dog);
-        DogHealthData healthData = dogHealthDataRepository.findByDog(dog).orElseThrow(() -> new RuntimeException("Health data not found"));
+        LocalDate today = LocalDate.now();
+
+        // Fetch today's health data
+        List<DogHealthData> todaysHealthData = dogHealthDataRepository.findAllByDogAndCreatedAtBetween(
+                dog, today.atStartOfDay(), today.plusDays(1).atStartOfDay()
+        );
+
+        if (todaysHealthData.isEmpty()) {
+            throw new RuntimeException("No health data found for today");
+        }
+
+        // Calculate the average heart rate and total step count for today
+        OptionalDouble avgHeartRate = todaysHealthData.stream()
+                .mapToInt(DogHealthData::getHeartRate)
+                .average();
+
+        int totalStepCount = todaysHealthData.stream()
+                .mapToInt(DogHealthData::getStepCount)
+                .sum();
+
+        if (avgHeartRate.isEmpty()) {
+            throw new RuntimeException("Failed to calculate average heart rate");
+        }
 
         Map<String, String> dogInfo = new HashMap<>();
-        dogInfo.put("심박수", String.valueOf(healthData.getHeartRate()));
-        dogInfo.put("하루 걸음 수", String.valueOf(healthData.getStepCount()));
+        dogInfo.put("심박수", String.valueOf((int) avgHeartRate.getAsDouble())); // Corrected line
+        dogInfo.put("하루 걸음 수", String.valueOf(totalStepCount));
         dogInfo.put("비만도", obesityDataList.get(0).getObesity().toString()); // Assuming Extra represents obesity level
         dogInfo.put("나이", String.valueOf(dog.getAge()));
         dogInfo.put("종", dog.getBreed());

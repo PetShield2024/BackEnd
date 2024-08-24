@@ -35,7 +35,7 @@ public class ObesityCommandServiceImpl implements ObesityCommandService {
     private final UuidRepository uuidRepository;
     private final RestTemplate restTemplate;
 
-    private final String pythonApiUrl = "http://192.168.219.108:5000/predict";  // Python server URL
+    private final String pythonApiUrl = "http://192.168.219.107:5000/predict";  // Python server URL
 
     @Override
     @Transactional
