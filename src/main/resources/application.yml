@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://petshield-dev.c344wgygm0ss.ap-northeast-2.rds.amazonaws.com:3306/petshield
-    username: root
-    password: han3546*
+    url: ${AWS_DB_URL}
+    username: ${AWS_DB_USER}
+    password: ${AWS_DB_PASS}
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
@@ -20,8 +20,8 @@ spring:
 
   security:
     user:
-      name: root
-      password: han3546
+      name: ${SECURITY_NAME}
+      password: ${SECURITY_PASSWORD}
     # 'mvc' 관련 설정은 보안 설정에 직접적으로 영향을 미치지 않으므로 보안 설정에 포함시키지 않습니다.
 
   application:
@@ -32,11 +32,13 @@ swagger:
     base-url: /swagger-ui/  # Swagger UI의 기본 경로 설정
 
 kakao:
-  client_id: 3a1648f18893406608171dcd57022aa9
-  client_secret: jOs7aOXiPRka7lm17aZLkw0l7VKkDmlo
+  client_id: ${KAKAO_CLIENT_ID}
+  client_secret: ${KAKAO_CLIENT_SECRET}
   redirect_uri: http://localhost:8080/callback
   token_uri: https://kauth.kakao.com/oauth/token
   user_info_uri: https://kapi.kakao.com/v2/user/me
 
 server:
   port: 8080  # 기본 HTTP 포트 설정
+
+
