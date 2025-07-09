@@ -1,120 +1,98 @@
-### 💻 PetShield Backend By SpringBoot
+# 🐾 Petshield - 반려동물 건강 지킴이 (백엔드)
 
-## 📌 처음 프로젝트 시작하기
+**Petshield**는 반려견의 건강 상태를 기록하고 분석하여, 보호자가 보다 체계적으로 건강을 관리할 수 있도록 도와주는 서비스입니다.  
+본 저장소는 Petshield의 **백엔드 API 서버** 레포지토리입니다.
 
-1. **IntelliJ에서 Git 설정**
-    - 먼저, IntelliJ에서 프로젝트를 엽니다.
-    - **`File`** > **`Settings`** > **`Version Control`** > **`Git`**로 이동하여 Git이 올바르게 설치되었는지 확인하세요.
-    - ![image](https://github.com/PetShield2024/BackEnd/assets/117579065/a4ee0d87-f7a9-4082-9ade-2fe86331b97e) 깃 버전이 뜨면 정상 안 뜨면 git bash 설
+---
 
-2. **GitHub 리포지토리 추가**
-    - IntelliJ의 **`VCS`** 메뉴에서 **`Import into Version Control`** > **`Create Git Repository`**를 선택하여 로컬 Git 리포지토리를 생성합니다.
-    - 터미널에서 프로젝트 디렉토리로 이동하여 다음 명령어를 실행합니다:
-        
-        ```bash
-        git init
-        ```
-        
-3. **GitHub 원격 리포지토리 설정**
-    - 원격 리포지토리를 추가하려면 터미널에서 다음 명령어를 사용하세요:
-        
-        ```bash
-        git remote add origin https://github.com/PetShield2024/BackEnd.git
-        ```
+## 📌 주요 기능
 
-4. 오류 발생시
-    
-    ```bash
-    git pull origin main
-    ```
-    
-5. **새 브랜치 생성 및 이동**
-    - 새로운 브랜치를 생성하고 해당 브랜치로 이동합니다:
-        
-        ```bash
-        git checkout -b seungeun/first
-        ```
-        
-6. **변경 사항 커밋**
-    - 모든 변경 사항을 스테이징하고 커밋합니다:
-        
-        ```bash
-        git add .
-        git commit -m "[Feat]: 새로운 기능 추가"
-        ```
-        
-7. **브랜치 푸시**
-    - 로컬 브랜치를 원격 리포지토리의 새로운 브랜치로 푸시합니다:
-        
-        ```bash
-        git push -u origin seungeun/first
-        ```
-        
-8. 오류 발생시
-    
-    ```bash
-    git pull main --allow-unrelated-histories
-    ```
+### 🐶 강아지 정보 관리
+- 반려견 기본 정보 입력 및 수정
+- 프로필 기반 홈 화면 구성
 
-## 📌 두번째 이후 프로젝트 실행 시
-1. 메인에 있는 내용 받기
-    
-    ```bash
-    git pull origin main
-    ```
-2. **새 브랜치 생성 및 이동**
-    - 새로운 브랜치를 생성하고 해당 브랜치로 이동합니다:
-        
-        ```bash
-        git checkout -b seungeun/first
-        ```
-        
-3. **변경 사항 커밋**
-    - 모든 변경 사항을 스테이징하고 커밋합니다:
-        
-        ```bash
-        git add .
-        git commit -m "[Feat]: 새로운 기능 추가"
-        ```
-        
-4. **브랜치 푸시**
-    - 로컬 브랜치를 원격 리포지토리의 새로운 브랜치로 푸시합니다:
-        
-        ```bash
-        git push -u origin seungeun/first
-        ```
-        
-### 📌 commit 하기
+### 🖼 비만도 검사
+- 비만도 이미지 등록
+- 등록된 이미지 기반 비만도 판별 및 분석
+- 비만도 이미지 불러오기 기능 제공
 
-- 파트 별로 작업을 끝냈거나 더 작은 단위로 작업을 끝낼 때마다 add 후에 commit을 해 주는 게 좋아요
-- 반드시 자신의 브랜치에서만 commit을 해주세요‼️
-- commit 형식
-    - [Feat]: 새로운 기능 추가
-    - [Fix]: 버그 수정
-    - [Docs]: 문서 수정
-    - [Style]: 코드 포맷팅, 세미콜론 누락, 코드 변경이 없는 경우
-    - [Refactor]: 코드 리펙토링
-    - [Test]: 테스트 코드, 리펙토링 테스트 코드 추가
-    - [Chore]: 빌드 업무 수정, 패키지 매니저 수정
-    
-    🖥️ `git add 자신이 수정한 파일명`
-    
-    🖥️ `git commit -m “[Feat(이름)] ㅇㅇ기능 추가”`
-    
+### 🩺 건강 기록 및 센서 연동
+- 반려견의 심박수 및 활동 데이터 기록
+- 아두이노와 연동된 실시간 데이터 수신 처리
+- 건강 기록을 주간 그래프로 시각화
 
-### 📤 Github 레파지토리에 적용하기
+### 🍖 사료 추천
+- 전체 사료 목록 제공
+- 사용자의 입력 조건에 따른 개인 맞춤형 사료 추천
 
-작업을 모두 끝냈다면, 프로젝트 변경 사항을 remote repository(github repository)에 push 합니다.
+### ☁️ 이미지 저장소 관리
+- AWS S3를 활용한 비만도 이미지 저장 및 조회
+- S3 경로 기반 이미지 접근 및 관리 기능
 
-🖥️ git push origin 본인의 브랜치명(깃허브 닉네임)
+---
 
-push를 완료했다면 스터디 repository에서 pull request를 진행합니다
+## 🛠️ 기술 스택
 
-(자신의 브랜치에 push 후에 github 페이지 들어오면 아마 뜰거에요!)
+- **Framework**: Spring Boot 3.3
+- **Database**: MySQL
+- **ORM**: Spring Data JPA
+- **Cloud**: AWS EC2, S3
+- **CI/CD**: GitHub Actions + AWS Elastic BeanStalk
+- **API Docs**: Swagger (springdoc-openapi)
+- **External Device**: 아두이노 심박수 센서
 
-PR(Pull Request)시 메세지 제목은 다음과 같이 [이름] oo기능 완료. 라고 적은 후 create pull request 버튼을 눌러주세요
+---
 
-PR : base: [master] <- compare: [본인 github 아이디]
+## ⚙️ 로컬 실행 방법
+
+1. 프로젝트 클론
+
+```bash
+git clone https://github.com/PetShield2024/BackEnd.git
+cd BackEnd
+```
+
+2. application-secret.yml 파일 생성 후 다음 항목 설정
+```yaml
+spring:
+  datasource:
+    url: ${AWS_DB_URL}
+    username: ${AWS_DB_USER}
+    password: ${AWS_DB_PASS}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+... [생략]
+
+cloud:
+  aws:
+    s3:
+      bucket: petshield-dev
+      path:
+        dog : dogs
+        obesity : obesity
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    credentials:
+      accessKey: ${AWS_ACCESS_KEY_ID}
+      secretKey: ${AWS_SECRET_ACCESS_KEY}
+server:
+  port: 8080  # 기본 HTTP 포트로 설정
+```
+
+3. 실행
+
+```bash
+./gradlew bootRun
+```
+
+🧪 API 문서
+Swagger UI: http://localhost:8080/swagger-ui/index.html
+
+🙋 기여자
+|이름	|역할|
+|--|--|
+|[<img src="https://avatars.githubusercontent.com/bigtr3" alt="" style="width:100px;100px;">](https://github.com/bigtr3) <br/><div align="center">전승은</div>|	백엔드 API 개발, DB 설계, 아두이노 연동, 비만도 분석 처리, CI/CD 구축|
 
 
-❤️ 깃 사용법 참고) https://umc-smwu.notion.site/Git-2aea3e9a04724a08881b8e61e306e5b1
